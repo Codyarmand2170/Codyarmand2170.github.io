@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+	<!-- BEGIN CSS -->
+	<style> 
+		/* TODO 1 */ 
+		[class="box"] {  /* Details css for the box */
+			display: block;
+			position: absolute;
+			width: 70px;
+			height: 70px;
+			top: 605px;
+			left: 0px;
+			background-color: teal; 
+			font-size: 300%;
+			text-align: center;
+		} 
+		body { 
+		background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Soccer_field_-_empty.svg/2000px-Soccer_field_-_empty.svg.png);
+			}
+		
+	</style>
+
+</head> 
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">?</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict' 
+
+			// Variable declarations
+			var box;
+			var boardWidth;
+			var update;
+			var handleBoxClick;
+
+			// jQuery stuff setup for you
+			box = $('.box');
+			boardWidth = $('.board').width();
+
+			// TODO 2  
+			//Additional Variables
+			var position; 
+			var points;
+			var speed; 
+			var direction;
+			//Sets initial speed and position of box
+			position = 5; 
+			points = 0; 
+			speed = 10;  
+			direction = 1;
+			//Applies CSS for the box
+			box.css('left', position); 
+			box.text(points);
+
+
+			// TODO 3 / 4
+			//Checks and applies this code every 50 miliseconds
+			update = function() {
+				position = position + (speed * direction); //Keeps the box moving
+				box.css('left', position); 
+				if(position >= boardWidth - 50) { // checks if the box is about to pass the right side of the screen and adjusts point values and direction/speed accordingly
+					speed = speed - 2;
+					direction = -1;  
+					points = points - 1; 
+					box.text(points);
+
+				}  
+				if (position <= 0) { // checks if the box is about to pass the left side of the screen and adjusts point values and direction/speed accordingly
+					speed = speed - 2;
+					direction = 1;   
+					points = points - 1;  
+					box.text(points); 
+
+
+				} 
+				if (points < 0) { //Checks if the player lost the game and displays the game over message if this condition is true
+					speed = 0; 
+					position = 0; 
+					box.text("Game Over");
+					
+				}
+			}
+
+
+			// TODO 5 / 6
+			handleBoxClick = function() { //Adjusts point values, position, and speed if the box is clicked by the player
+				speed = speed + 3; 
+				points = points + 1; 
+				box.text(points);
+			};
+
+
+			//this calls update every 50 milliseconds
+			setInterval(update, 50);
+			// this calls the handle handleBoxClick function every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})()
+	</script>
+</body>
+</html>
