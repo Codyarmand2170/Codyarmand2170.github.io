@@ -51,7 +51,11 @@
             main {
                 background: rgb(245, 238, 219);
                 display: flex;
-            }
+            } 
+             container2 {
+                background: rgb(245, 238, 219);
+                display: flex; 
+             }
             [class=sidebar] {
                 margin-right: 25px; 
                 margin-top: 60px;
@@ -78,8 +82,36 @@
             }
             [class=interests] header {
                 font-size: 1.25em;
-            }
-        </style>
+            } 
+            [class=awards] header {
+                font-size: 1.25em;
+            } 
+        </style> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+        <script> 
+        $(document).ready(function(){ 
+                $("ul.notable-awards").hide();
+        });
+        </script>
+        <script> 
+        $(document).ready(function(){ 
+            $('#Awards').click(function(){ 
+                $("ul.notable-awards").slideToggle();
+            });
+        });
+        </script> 
+         <script> 
+        $(document).ready(function(){ 
+                $("ul.rizzo-interests").hide();
+        });
+        </script>
+        <script> 
+        $(document).ready(function(){ 
+            $('#Interests').click(function(){ 
+                $("ul.rizzo-interests").fadeToggle();
+            });
+        }); 
+        </script>
     </head>
     
     <body>   
@@ -108,8 +140,9 @@
                        Rocket League Grand Champion
                    </p> 
                    <section class="interests"> 
-                       <header>Interests</header> 
-                       <ul> 
+                       <header>Interests</header>  
+                       <button id = "Interests">Rizzo's Interests</button>
+                       <ul class = "rizzo-interests"> 
                            <li>Rocket League</li> 
                            <li>Balling Jonsandman</li> 
                            <li>G2</li>
@@ -118,6 +151,19 @@
                 </div> 
                  <div class="sidebar-right"> 
                     <img src="https://yt3.ggpht.com/-jaxChfUx5vU/AAAAAAAAAAI/AAAAAAAAAAA/U6-GeBhpjlU/s900-c-k-no-mo-rj-c0xffffff/photo.jpg">
+                </div>
+            </main> 
+            <main class = "container2"> 
+                <div class = "awards-content"> 
+                    <header>Notable Awards</header> 
+                    <section class = "awards"> 
+                        <button id = "Awards"> Rizzo's Notable Awards</button> 
+                        <ul class = "notable-awards"> 
+                            <li>1st Place-Brisk 7-Eleven RLCS Summer Series (June 25, 2017)</li> 
+                            <li>1st Place-Rocket Royale (February 27, 2017)</li>
+                            <li>1st Place-RLCS Season 2 Midseason Mayham (October 8, 2016</li>
+                        </ul>
+                    </section>
                 </div>
             </main>
         </div>
